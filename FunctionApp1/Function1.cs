@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -36,9 +37,22 @@ namespace FunctionApp1
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
 
+            var date = DateTime.Now;
+            var array = "";
+            for (int i = 0; i<= Byte.MaxValue; i++ )
+            {
+                array += $"\n Byte: {i} Dia: {i + 1}º Data: {new DateTime(date.Year, 1, 1).AddDays(i).ToString("dd.MM.yyyy")} ";
+            }
+            var dia = date.DayOfYear;
+            var diaByte = Byte.MaxValue;
+
+            Console.WriteLine(date);
+            Console.WriteLine(dia);
+            Console.WriteLine(diaByte);
+
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+                : $"Olá Programador, {name}. \n Hoje é seu dia sabe porque? Role a pagina até o Fim. \n {array} \n Dia {date} representa o valor maximo de 1 Byte que é {Byte.MaxValue} lembre-se de contar o 0";
 
             return new OkObjectResult(responseMessage);
         }
