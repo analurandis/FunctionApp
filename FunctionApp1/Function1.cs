@@ -38,21 +38,34 @@ namespace FunctionApp1
             name = name ?? data?.name;
 
             var date = DateTime.Now;
-            var array = "";
-            for (int i = 0; i<= Byte.MaxValue; i++ )
-            {
-                array += $"\n Byte: {i} Dia: {i + 1} Data: {new DateTime(date.Year, 1, 1).AddDays(i).ToString("dd.MM.yyyy")} ";
-            }
-            var dia = date.DayOfYear;
-            var diaByte = Byte.MaxValue;
+            var datas = "";
+            var mensagem = "";
 
-            Console.WriteLine(date);
-            Console.WriteLine(dia);
-            Console.WriteLine(diaByte);
+
+            if (Byte.MaxValue == date.DayOfYear -1 )
+            {
+                for (int i = 0; i <= Byte.MaxValue; i++)
+                {
+                    datas += $"\n Byte: {i} Dia: {i + 1} Data: {new DateTime(date.Year, 1, 1).AddDays(i).ToString("dd.MM.yyyy")} ";
+                }
+                mensagem = $"Programador, {name}. \n Hoje e seu dia sabe porque? Role a pagina ate o Fim. \n {datas} \n Dia {date.ToString("dd/MM/yyyy")} representa o valor maximo de 1 Byte que e {Byte.MaxValue} lembre-se de contar o 0";
+            }
+            else
+            {
+                if (Byte.MaxValue < date.DayOfYear -1)
+                {
+                    mensagem = $"Data atual: {date.ToString("dd/MM/yyyy")} \n Já se passaram {(date.DayOfYear -1)- Byte.MaxValue} dias do dia do programador ";
+                }
+                else
+                {
+                    mensagem = $"Data atual: {date.ToString("dd/MM/yyyy")} \n Faltam  {Byte.MaxValue - (date.DayOfYear - 1) } para o dia do programador";
+                }
+                
+            }
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Programador, {name}. \n Hoje e seu dia sabe porque? Role a pagina ate o Fim. \n {array} \n Dia {date} representa o valor maximo de 1 Byte que e {Byte.MaxValue} lembre-se de contar o 0";
+                : mensagem;
 
             return new OkObjectResult(responseMessage);
         }
