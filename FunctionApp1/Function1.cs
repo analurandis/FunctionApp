@@ -25,7 +25,7 @@ namespace FunctionApp1
         [FunctionName("Function1")]
         [OpenApiOperation(operationId: "Run", tags: new[] { "name" })]
         [OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The **Name** parameter")]
-        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Description = "The OK response")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain ; charset=utf-8", bodyType: typeof(string),Description = "The OK response")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req)
         {
@@ -52,7 +52,7 @@ namespace FunctionApp1
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Olá Programador, {name}. \n Hoje é seu dia sabe porque? Role a pagina até o Fim. \n {array} \n Dia {date} representa o valor maximo de 1 Byte que é {Byte.MaxValue} lembre-se de contar o 0";
+                : $"Programador, {name}. \n Hoje é seu dia sabe porque? Role a pagina até o Fim. \n {array} \n Dia {date} representa o valor maximo de 1 Byte que é {Byte.MaxValue} lembre-se de contar o 0";
 
             return new OkObjectResult(responseMessage);
         }
