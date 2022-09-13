@@ -41,7 +41,7 @@ namespace FunctionApp1
             var array = "";
             for (int i = 0; i<= Byte.MaxValue; i++ )
             {
-                array += $"\n Byte: {i} Dia: {i + 1}º Data: {new DateTime(date.Year, 1, 1).AddDays(i).ToString("dd.MM.yyyy")} ";
+                array += $"\n Byte: {i} Dia: {i + 1} Data: {new DateTime(date.Year, 1, 1).AddDays(i).ToString("dd.MM.yyyy")} ";
             }
             var dia = date.DayOfYear;
             var diaByte = Byte.MaxValue;
@@ -52,7 +52,7 @@ namespace FunctionApp1
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Programador, {name}. \n Hoje é seu dia sabe porque? Role a pagina até o Fim. \n {array} \n Dia {date} representa o valor maximo de 1 Byte que é {Byte.MaxValue} lembre-se de contar o 0";
+                : $"Programador, {name}. \n Hoje e seu dia sabe porque? Role a pagina ate o Fim. \n {array} \n Dia {date} representa o valor maximo de 1 Byte que e {Byte.MaxValue} lembre-se de contar o 0";
 
             return new OkObjectResult(responseMessage);
         }
